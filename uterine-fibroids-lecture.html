@@ -471,6 +471,116 @@
       }
     }
 
+    /* ---- IMAGE CARDS ---- */
+    .image-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .image-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--purple-glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .image-card:hover::before {
+      opacity: 1;
+    }
+
+    .image-card:hover {
+      border-color: rgba(181, 123, 238, 0.3);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card), var(--shadow-glow);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .image-card .image-caption {
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-2);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .image-card .image-caption .caption-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple);
+      flex-shrink: 0;
+    }
+
+    .image-card.image-card--constrained img {
+      max-height: 420px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 16px;
+    }
+
+    .image-card.image-card--hero {
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .image-card.image-card--hero:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .image-card.image-card--hero::before {
+      display: none;
+    }
+
+    .image-card.image-card--hero img {
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      opacity: 0.6;
+      mask-image: linear-gradient(180deg, black 30%, transparent 100%);
+      -webkit-mask-image: linear-gradient(180deg, black 30%, transparent 100%);
+    }
+
+    .image-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .image-grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .image-card.image-card--hero img {
+        max-height: 180px;
+      }
+    }
+
     /* ---- GSAP REVEAL SETUP ---- */
     .reveal {
       opacity: 0;
@@ -2506,6 +2616,11 @@
       <circle cx="125" cy="155" r="6" fill="none" stroke="rgba(181,123,238,0.2)" stroke-width="1" />
     </svg>
 
+    <!-- Hero Histopathology Background Accent -->
+    <div class="image-card image-card--hero reveal" style="position:absolute;bottom:0;left:0;right:0;z-index:0;">
+      <img src="img3.jpg" alt="Histopathological H&E stain of uterine leiomyoma showing characteristic whorled smooth muscle bundles" loading="lazy">
+    </div>
+
     <div class="container">
       <div class="hero-content">
         <div class="hero-eyebrow reveal">OB-GYN · Benign Gynaecology · Medical Lecture</div>
@@ -2669,6 +2784,15 @@
               </div>
             </div>
           </details>
+        </div>
+      </div>
+
+      <!-- Epidemiology Visualization -->
+      <div class="image-card reveal" style="margin-top:48px;">
+        <img src="images/epidemiology-global.png" alt="Data visualization showing 70% global prevalence of uterine fibroids — abstract infographic with demographic data" loading="lazy">
+        <div class="image-caption">
+          <span class="caption-dot"></span>
+          Global prevalence visualization — up to 70% of women affected by age 50 (Baird et al., AJE 2003)
         </div>
       </div>
     </div>
@@ -2865,6 +2989,24 @@
           </div>
         </div>
       </details>
+
+      <!-- Pathophysiology Hormonal Pathway Image -->
+      <div class="image-grid-2 reveal">
+        <div class="image-card">
+          <img src="images/pathophysiology-hormones.png" alt="Hormonal signaling pathway — estrogen and progesterone interaction with smooth muscle cell receptors driving fibroid growth" loading="lazy">
+          <div class="image-caption">
+            <span class="caption-dot"></span>
+            Oestrogen & progesterone receptor signaling in myometrial smooth muscle cells
+          </div>
+        </div>
+        <div class="image-card">
+          <img src="img3.jpg" alt="H&E-stained histopathology of uterine leiomyoma showing whorled bundles of smooth muscle cells — the classic interlacing pattern" loading="lazy">
+          <div class="image-caption">
+            <span class="caption-dot"></span>
+            Histopathology (H&E) — characteristic whorled smooth muscle bundles of a leiomyoma
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3000,6 +3142,15 @@
           </div>
         </div>
       </div>
+
+      <!-- Types of Fibroids Reference Image -->
+      <div class="image-card reveal" style="margin-top:40px;">
+        <img src="Types-of-fibroids.jpg" alt="Anatomical illustration showing three main types of uterine fibroids — intramural (within the wall), submucosal (protruding into cavity), and subserosal (projecting outward)" loading="lazy">
+        <div class="image-caption">
+          <span class="caption-dot"></span>
+          Anatomical reference — Intramural, Submucosal & Subserosal fibroid locations
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3093,6 +3244,15 @@
           important for pre-operative planning and predicting hysteroscopic difficulty (ESGE Difficulty Score also uses
           FIGO type).
         </p>
+      </div>
+
+      <!-- FIGO Classification Diagram -->
+      <div class="image-card image-card--constrained reveal" style="margin-top:40px;">
+        <img src="_.png" alt="FIGO leiomyoma subclassification diagram — labelled uterus showing Type 0 (pedunculated intracavitary), Type I (>50% in cavity), Type II (<50% in cavity), intramural, and subserosal positions" loading="lazy">
+        <div class="image-caption">
+          <span class="caption-dot"></span>
+          FIGO subclassification — visual reference for Types 0–II (submucosal), intramural & subserosal
+        </div>
       </div>
     </div>
   </section>
@@ -3657,6 +3817,15 @@
           </div>
         </div>
       </details>
+
+      <!-- Ultrasound Image -->
+      <div class="image-card reveal" style="margin-top:40px;">
+        <img src="img4.jpg" alt="Real pelvic ultrasound showing uterus with small pedunculated fibroid — 2D transvaginal USS demonstrating a well-defined hypoechoic mass on a stalk" loading="lazy">
+        <div class="image-caption">
+          <span class="caption-dot"></span>
+          Pelvic USS — Transvaginal ultrasound demonstrating uterus with small pedunculated subserosal fibroid
+        </div>
+      </div>
     </div>
   </section>
 
